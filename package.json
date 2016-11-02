@@ -1,0 +1,35 @@
+{
+    "name": "manba",
+    "version": "0.0.1",
+    "description": "javascript 日期处理",
+    "main": "build/manba.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vvpvvp/manba.git"
+    },
+    "keywords": [
+        "manba",
+        "date"
+    ],
+    "author": {
+        "name": "alias"
+    },
+    "license": "The MIT License",
+    "_npmUser": {
+        "name": "vvpvvp",
+        "email": "a8918929@sina.com.cn"
+    },
+    "dependencies": {},
+    "bugs": {
+        "url": "https://github.com/vvpvvp/manba/issues"
+    },
+    "babel": {
+        "presets": ["es2015"]
+    },
+    "scripts": {
+        "build": "babel ./manba.js -d build",
+        "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js"
+    },
+    "homepage": "https://github.com/vvpvvp/manba#readme",
+    "readmeFilename": "README.md"
+}
