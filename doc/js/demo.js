@@ -1,28 +1,28 @@
 (function(window,$) {
 	$(function(){
-		var m = moment();
+		var m = manba();
 		var code1 = 
-			"moment().format('YYYY/MM/DD, h:mm:ss q');     // "+m.format('YYYY/MM/DD, h:mm:ss q')+"\n"+
-			"moment().format('kk');                        // "+m.format('kk')+"\n"+
-			"moment().format('星期w');                      // "+m.format('星期w')+"\n"+
-			"moment().format('M月 D日 YY');                 // "+m.format('M月 D日 YY')+"\n"+
-			"moment().format();                            // "+m.format();
+			"manba().format('YYYY/MM/DD, h:mm:ss q');     // "+m.format('YYYY/MM/DD, h:mm:ss q')+"\n"+
+			"manba().format('kk');                        // "+m.format('kk')+"\n"+
+			"manba().format('星期w');                      // "+m.format('星期w')+"\n"+
+			"manba().format('M月 D日 YY');                 // "+m.format('M月 D日 YY')+"\n"+
+			"manba().format();                            // "+m.format();
 
 		var code2 = 
-			"moment().add(2,moment.DAY).format('kk');       // "+moment().add(2,moment.DAY).format('kk')+"\n"+
-			"moment().add(-2,moment.YEAR).format('kk');     // "+moment().add(-2,moment.YEAR).format('kk')+"\n"+
-			"moment().add(4,moment.MONTH).format('kk');     // "+moment().add(4,moment.MONTH).format('kk')+"\n"+
-			"moment().startOf(moment.DAY).format('kk');     // "+moment().startOf(moment.DAY).format('kk')+"\n"+
-			"moment().endOf(moment.YEAR).format('kk');      // "+moment().endOf(moment.YEAR).format('kk')+"\n"+
-			"moment().add(-9,moment.MINUTE).format('kk');   // "+moment().add(-9,moment.MINUTE).format('kk');
+			"manba().add(2,manba.DAY).format('kk');       // "+manba().add(2,manba.DAY).format('kk')+"\n"+
+			"manba().add(-2,manba.YEAR).format('kk');     // "+manba().add(-2,manba.YEAR).format('kk')+"\n"+
+			"manba().add(4,manba.MONTH).format('kk');     // "+manba().add(4,manba.MONTH).format('kk')+"\n"+
+			"manba().startOf(manba.DAY).format('kk');     // "+manba().startOf(manba.DAY).format('kk')+"\n"+
+			"manba().endOf(manba.YEAR).format('kk');      // "+manba().endOf(manba.YEAR).format('kk')+"\n"+
+			"manba().add(-9,manba.MINUTE).format('kk');   // "+manba().add(-9,manba.MINUTE).format('kk');
 
 		var code3 = 
-			"moment().distance('2013-03-23',moment.DAY);    // "+m.distance('2013-03-23',moment.DAY)+"\n"+
-			"moment().distance('2013-03-23',moment.YEAR);   // "+m.distance('2013-03-23',moment.YEAR)+"\n"+
-			"moment().distance('2013-03-23',moment.MONTH);  // "+m.distance('2013-03-23',moment.MONTH)+"\n"+
-			"moment('2013-03-23').distance(moment.NOW,moment.MONTH);// "+moment('2013-03-23').distance(moment.NOW,moment.MONTH);
+			"manba().distance('2013-03-23',manba.DAY);    // "+m.distance('2013-03-23',manba.DAY)+"\n"+
+			"manba().distance('2013-03-23',manba.YEAR);   // "+m.distance('2013-03-23',manba.YEAR)+"\n"+
+			"manba().distance('2013-03-23',manba.MONTH);  // "+m.distance('2013-03-23',manba.MONTH)+"\n"+
+			"manba('2013-03-23').distance(manba.NOW,manba.MONTH);// "+manba('2013-03-23').distance(manba.NOW,manba.MONTH);
 
-		var code4 = "npm install momentjs                            #npm\ngit clone https://github.com/vvpvvp/momentjs    #git"
+		var code4 = "npm install manba                            #npm\ngit clone https://github.com/vvpvvp/manba    #git"
 		$("#code1").text(code1);
 		$("#code2").text(code2);
 		$("#code3").text(code3);
