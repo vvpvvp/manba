@@ -1,0 +1,86 @@
+body {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #34495e;
+    margin: 0;
+}
+a,
+a:hover {
+    text-decoration: none;
+}
+
+header {
+    text-align: center;
+    padding-top: 4em;
+}
+
+header nav {}
+
+header nav a {
+    color: #3c9ff5;
+    padding-bottom: 3px;
+    margin: 0 1.3em;
+    font-size: 16px;
+}
+
+header nav a:hover {
+    border-bottom: 3px dashed;
+}
+
+header img {
+    width: 140px;
+    display: block;
+    margin: 10px auto;
+    margin-top: 4.5em;
+}
+
+header h1 {
+    font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 4em;
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+}
+
+.desription {
+    color: #7e8a94;
+}
+
+
+.buttons a:first-child {
+    margin-right: 20px;
+}
+
+.buttons a {
+    display: inline-block;
+    background: #3c9ff5;
+    color: #FFF;
+    padding: 2px 20px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.codes pre {
+    font-size: 13px;
+}
+
+.codes {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.codes>p {
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 80px;
+}
+
+a {
+    color: #3c9ff5;
+}
