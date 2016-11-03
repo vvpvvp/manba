@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
         typeof define === 'function' && define.amd ? define(factory) :
         global.manba = factory();
-}(global||window, function() {
+}((typeof window == 'object'?window:typeof global == 'object'?global:this), function() {
     "use strict";
     const FORMAT_LIST = {
         "l": "YYYY-MM-DD",
