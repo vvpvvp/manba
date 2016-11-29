@@ -161,7 +161,8 @@ manba("2012-10-03 23:59:59").add(1,manba.MINUTE).format("ff")
 ```
 
 ### startOf
-`startOf`方法，做一定规则的时间处理。  
+`startOf`方法，做一定规则的时间处理，并返回结果。
+注：该处理并不修改原来的对象，请使用返回的对象处理。  
 `manba.startOf(manba.TYPE)`
 
 ```javascript
@@ -186,7 +187,8 @@ manba("2012-10-03 23:59:59").startOf(manba.WEEK,manba.MONDAY).format("fff")
 
 
 ### endOf
-`endOf`方法，做一定规则的时间处理。  
+`endOf`方法，做一定规则的时间处理，并返回结果。
+注：该处理并不修改原来的对象，请使用返回的对象处理。  
 `manba.endOf(manba.TYPE)`
 
 ```javascript

@@ -46,7 +46,7 @@
                 } else if (Utils.isString(arg_1)) {
                     _date = Utils.parse(arg_1);
                 } else if (arg_1 instanceof _manba) {
-                    return arg_1;
+                    _date = new Date(arg_1.time());
                 }
             }
             manba_obj._date = _date;
@@ -276,9 +276,9 @@
                     break;
                 case manba.MONTH:
                     let month_add = m.month() + num;
-                    let year_add = Math.floor(month_add / 12);
-                    month_add = month_add % 12;
-                    m.add(year_add, manba.YEAR);
+                    // let year_add = Math.floor(month_add / 12);
+                    // month_add = month_add % 12;
+                    // m.add(year_add, manba.YEAR);
                     m.month(month_add);
                     break;
                 case manba.YEAR:
@@ -305,9 +305,9 @@
         endOf(type,set) {
             let v = this.isValid();
             if(v!==true)return v;
-            let m = this;
+            let m = _manba(this);
             type = type || manba.DAY;
-            m.startOf(type,set);
+            m = m.startOf(type,set);
             m.add(1, type);
             // if (manba.DAY == type||manba.WEEK == type) {
                 m.add(-1, manba.SECOND);
@@ -319,7 +319,7 @@
         startOf(type,set) {
             let v = this.isValid();
             if(v!==true)return v;
-            let m = this;
+            let m = new _manba(this);
             type = type || manba.DAY;
             switch (type) {
                 case manba.DAY:
@@ -330,10 +330,10 @@
                     break;
                 case manba.MONTH:
                     m.date(1);
-                    m.startOf(manba.DAY);
+                    m = m.startOf(manba.DAY);
                     break;
                 case manba.WEEK:
-                    m.startOf(manba.DAY);
+                    m = m.startOf(manba.DAY);
                     set=set||manba.SUNDAY;
                     let startDay = set==manba.SUNDAY?0:1;
                     if(m.day()==0&&startDay==1){
@@ -344,7 +344,7 @@
                 case manba.YEAR:
                     m.month(1);
                     m.date(1);
-                    m.startOf(manba.DAY);
+                    m = m.startOf(manba.DAY);
                     break;
                 case manba.HOUR:
                     m.time(Math.floor((m.time()) / _HOURS) * _HOURS);

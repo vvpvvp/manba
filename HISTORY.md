@@ -35,3 +35,12 @@
   * fixed bug : wrong result for moment.MONDAY with momont.Week handle
 
 ==================
+
+
+
+1.1.16 / 2016-11-29
+==================
+
+  * fixed bug : wrong result for function add with momont.MONTH
+
+==================
