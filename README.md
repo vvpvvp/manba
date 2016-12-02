@@ -119,7 +119,7 @@ manba().date() //29
 manba().date(4).format() //2016-03-04
 manba().isLeapYear() //是否为闰年 true
 manba().toString()
-manba().toISOString()
+manba().toISOString() //返回带时区的格式，2016-12-02T20:58:02+08:00
 ```
 ### distance
 

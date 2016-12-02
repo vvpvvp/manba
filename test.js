@@ -54,9 +54,9 @@ var manba = require('./manba');
 
 // console.log(manba("2012-10-03 23:59:59").endOf(manba.YEAR).format("fff"));
 // console.log(manba("2012-10-03 23:59:59").endOf(manba.MONTH).format("fff"));
-let m = manba(1391184000000);
-console.log(m.add(-3, manba.MONTH).format());
-console.log(m.format());
+// let m = manba(1391184000000);
+// console.log(m.add(-3, manba.MONTH).format());
+console.log(manba("2016-12-02T20:58:02+08:00").toLocalString());
 // console.log(global||window);
 // console.log(manba())
 // console.log(manba('2016-07-22'))
