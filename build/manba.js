@@ -232,27 +232,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return 0;
     },
     getWeekOfYear: function getWeekOfYear(weekStart) {
-      // let diff = 0;
-      // if (weekStart && weekStart == manba.MONDAY) {
-      //   diff = 1;
-      // }
-      weekStart = (weekStart || 0) - 0;  
-      if(isNaN(weekStart) || weekStart > 6){
+      weekStart = (weekStart || 0) - 0;
+      if (isNaN(weekStart) || weekStart > 6) {
         weekStart = 0;
-      }  
-      var dayOfWeek = this.day();
-      var day = this.date();
-      var _date = this._date;
-      var year = _date.getFullYear();
-      var firstDay = new Date(year, 0, 1);
-      var firstWeekDay = firstDay.getDay();
-      var firstWeekDays = 7 - firstWeekDay + (firstWeekDay >= weekStart ? 1 : 0);
-      var dayOfYear = (new Date(year, _date.getMonth(), _date.getDate()) - firstDay) / (24 * 3600 * 1000) + 1;
-      return Math.ceil((dayOfYear - firstWeekDays) / 7) + (dayOfWeek >= weekStart ? 1 : 0);
+      }
+      var year = this.year();
+      var firstDay = this.startOf(manba.YEAR);
+      var firstWeekDays = 7 - firstDay.day() + weekStart;
+      var dayOfYear = (this.startOf(manba.DAY).time() - firstDay.time()) / (24 * 3600 * 1000) + 1;
+      return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;
     },
     getWeekOfMonth: function getWeekOfMonth(weekStart) {
-      weekStart = (weekStart || 0) - 0;  
-      if(isNaN(weekStart) || weekStart > 6){
+      weekStart = (weekStart || 0) - 0;
+      if (isNaN(weekStart) || weekStart > 6) {
         weekStart = 0;
       }
       var dayOfWeek = this.day();
