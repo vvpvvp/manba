@@ -232,21 +232,28 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return 0;
     },
     getWeekOfYear: function getWeekOfYear(weekStart) {
-      var diff = 0;
-      if (weekStart && weekStart == manba.MONDAY) {
-        diff = 1;
-      }
+      // let diff = 0;
+      // if (weekStart && weekStart == manba.MONDAY) {
+      //   diff = 1;
+      // }
+      weekStart = (weekStart || 0) - 0;  
+      if(isNaN(weekStart) || weekStart > 6){
+        weekStart = 0;
+      }  
+      var dayOfWeek = this.day();
+      var day = this.date();
       var _date = this._date;
       var year = _date.getFullYear();
       var firstDay = new Date(year, 0, 1);
-      var firstWeekDays = 7 - firstDay.getDay() + diff;
+      var firstWeekDay = firstDay.getDay();
+      var firstWeekDays = 7 - firstWeekDay + (firstWeekDay >= weekStart ? 1 : 0);
       var dayOfYear = (new Date(year, _date.getMonth(), _date.getDate()) - firstDay) / (24 * 3600 * 1000) + 1;
-      return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;
+      return Math.ceil((dayOfYear - firstWeekDays) / 7) + (dayOfWeek >= weekStart ? 1 : 0);
     },
     getWeekOfMonth: function getWeekOfMonth(weekStart) {
-      var diff = 0;
-      if (weekStart && weekStart == manba.MONDAY) {
-        diff = 1;
+      weekStart = (weekStart || 0) - 0;  
+      if(isNaN(weekStart) || weekStart > 6){
+        weekStart = 0;
       }
       var dayOfWeek = this.day();
       var day = this.date();
@@ -429,6 +436,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   manba.TIME = 9;
 
   manba.MONDAY = 1;
-  manba.SUNDAY = 2;
+  manba.TUESDAY = 2;
+  manba.WEDNESDAY = 3;
+  manba.THURSDAY = 4;
+  manba.FRIDAY = 5;
+  manba.SATURDAY = 6;
+  manba.SUNDAY = 7;
   return manba;
 });

@@ -28,7 +28,8 @@
     },
     "scripts": {
         "build": "babel ./manba.js -d build",
-        "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js"
+        "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js",
+        "test": "mocha --compilers js:babel-core/register ./test/*.js"
     },
     "homepage": "https://github.com/vvpvvp/manba#readme",
     "readmeFilename": "README.md"

@@ -56,12 +56,12 @@
       }
     },
     pad(num) {
-      var norm = Math.abs(Math.floor(num));
+      let norm = Math.abs(Math.floor(num));
       return (norm < 10 ? '0' : '') + norm;
     },
     parse(str) {
       let aspNetJsonRegex = /^(\d{4})\-?(\d{2})\-?(\d{2})\s?\:?(\d{2})?\:?(\d{2})?\:?(\d{2})?$/i;
-      var matched = aspNetJsonRegex.exec(str);
+      let matched = aspNetJsonRegex.exec(str);
       if (matched !== null) {
         matched.shift();
         Utils.padMonth(matched);
@@ -136,7 +136,7 @@
       return input instanceof String || Object.prototype.toString.call(input) === '[object String]';
     },
     extend(a, b) {
-      for (var i in b) {
+      for (let i in b) {
         if (hasOwnProp(b, i)) {
           a[i] = b[i];
         }
@@ -229,25 +229,24 @@
       return 0;
     },
     getWeekOfYear(weekStart) {
-      let diff = 0;
-      if (weekStart && weekStart == manba.MONDAY) {
-        diff = 1;
-      }
-      let _date = this._date;
-      let year = _date.getFullYear();
-      let firstDay = new Date(year, 0, 1);
-      let firstWeekDays = 7 - firstDay.getDay() + diff;
-      let dayOfYear = (((new Date(year, _date.getMonth(), _date.getDate())) - firstDay) / (24 * 3600 * 1000)) + 1;
-      return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;
+      weekStart = (weekStart || 0) - 0;  
+      if(isNaN(weekStart) || weekStart > 6){
+        weekStart = 0;
+      }  
+      var year = this.year();  
+      var firstDay = this.startOf(manba.YEAR);  
+      var firstWeekDays = 7 - firstDay.day() + weekStart;  
+      var dayOfYear = ((this.startOf(manba.DAY).time() - firstDay.time()) / (24 * 3600 * 1000)) + 1;  
+      return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;  
     },
     getWeekOfMonth(weekStart) {
-      let diff = 0;
-      if (weekStart && weekStart == manba.MONDAY) {
-        diff = 1;
+      weekStart = (weekStart || 0) - 0;  
+      if(isNaN(weekStart) || weekStart > 6){
+        weekStart = 0;
       }
-      var dayOfWeek = this.day();
-      var day = this.date();
-      return Math.ceil((day - dayOfWeek - 1) / 7) + ((dayOfWeek >= weekStart) ? 1 : 0);
+      let dayOfWeek = this.day();
+      let day = this.date();
+      return Math.ceil((day - dayOfWeek - 1) / 7) + (dayOfWeek >= weekStart ? 1 : 0);
     },
     isLeapYear() {
       let v = this.isValid();
@@ -426,6 +425,11 @@
   manba.TIME = 9;
 
   manba.MONDAY = 1;
-  manba.SUNDAY = 2;
+  manba.TUESDAY = 2;
+  manba.WEDNESDAY = 3;
+  manba.THURSDAY = 4;
+  manba.FRIDAY = 5;
+  manba.SATURDAY = 6;
+  manba.SUNDAY = 7;
   return manba;
 }));
