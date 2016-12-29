@@ -1,4 +1,3 @@
-// var manba = require('./build/manba');
 var manba = require('../manba');
 var expect = require('chai').expect;
 (function () {
