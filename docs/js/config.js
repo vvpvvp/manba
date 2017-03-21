@@ -7,6 +7,8 @@
 			"manba().format('星期w');                      // "+m.format('星期w')+"\n"+
 			"manba().format('M月 D日 YY');                 // "+m.format('M月 D日 YY')+"\n"+
 			"manba().format();                            // "+m.format();
+			"manba().toISOString();                       // "+m.toISOString();
+			"manba().toISOString(+1);                     // "+m.toISOString(+1);
 
 		var code2 = 
 			"manba().add(2,manba.DAY).format('kk');       // "+manba().add(2,manba.DAY).format('kk')+"\n"+
