@@ -1,6 +1,6 @@
 {
     "name": "manba",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "javascript 日期处理",
     "main": "build/manba.js",
     "repository": {

@@ -119,8 +119,20 @@ manba().date() //29
 manba().date(4).format() //2016-03-04
 manba().isLeapYear() //是否为闰年 true
 manba().toString()
-manba().toISOString() //返回带时区的格式，2016-12-02T20:58:02+08:00
 ```
+
+### ISOString
+
+`toISOString()`方法，获取带时区的格式化字符串(例：2016-12-02T20:58:02+08:00)。
+可传递参数获取其他时区的格式化字符串。
+
+```javascript
+
+manba("2016-07-23 12:12:12").toISOString() //返回带时区的格式，2016-07-23T12:12:12+08:00
+manba("2016-07-23 12:12:12").toISOString(+7) //返回UTC+7的日期，2016-07-23T11:12:12+07:00
+
+```
+
 ### distance
 
 `manba.distance(manba|String|Number|Date|Array,manba.TYPE)`
