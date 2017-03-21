@@ -93,7 +93,7 @@
     format(date, formatStr) {
       let str = formatStr;
       str = str.replace(/yyyy|YYYY/, date.getFullYear());
-      str = str.replace(/yy|YY/, (date.getYear() % 100) > 8 ? (date.getYear() % 100).toString() : '0' + (date.getYear() % 100));
+      str = str.replace(/yy|YY/, (date.getFullYear() % 100) > 8 ? (date.getFullYear() % 100).toString() : '0' + (date.getFullYear() % 100));
       str = str.replace(/MM/, date.getMonth() > 8 ? (date.getMonth() + 1).toString() : ('0' + (date.getMonth() + 1)));
       str = str.replace(/M/g, (date.getMonth() + 1));
       str = str.replace(/w|W/g, WEEK[date.getDay()]);
@@ -106,6 +106,24 @@
       str = str.replace(/ss|SS/, this.pad(date.getSeconds()));
       str = str.replace(/s|S/g, date.getSeconds());
       str = str.replace(/q|Q/g, date.getHours() > 12 ? DAY_STRING[1] : DAY_STRING[0]);
+      return str;
+    },
+    UTCformat(date, formatStr) {
+      let str = formatStr;
+      str = str.replace(/yyyy|YYYY/, date.getUTCFullYear());
+      str = str.replace(/yy|YY/, (date.getUTCFullYear() % 100) > 8 ? (date.getUTCFullYear() % 100).toString() : '0' + (date.getUTCFullYear() % 100));
+      str = str.replace(/MM/, date.getUTCMonth() > 8 ? (date.getUTCMonth() + 1).toString() : ('0' + (date.getUTCMonth() + 1)));
+      str = str.replace(/M/g, (date.getUTCMonth() + 1));
+      str = str.replace(/w|W/g, WEEK[date.getUTCDay()]);
+      str = str.replace(/dd|DD/, this.pad(date.getUTCDate()));
+      str = str.replace(/d|D/g, date.getUTCDate());
+      str = str.replace(/hh|HH/, this.pad(date.getUTCHours()));
+      str = str.replace(/h|H/g, date.getUTCHours());
+      str = str.replace(/mm/, this.pad(date.getUTCMinutes()));
+      str = str.replace(/m/g, date.getUTCMinutes());
+      str = str.replace(/ss|SS/, this.pad(date.getUTCSeconds()));
+      str = str.replace(/s|S/g, date.getUTCSeconds());
+      str = str.replace(/q|Q/g, date.getUTCHours() > 12 ? DAY_STRING[1] : DAY_STRING[0]);
       return str;
     },
     timestamp(date) {
@@ -184,20 +202,33 @@
       let formatStr = FORMAT_LIST[str] || str;
       return Utils.format(m._date, formatStr);
     },
+    UTCformat(str){
+      let m = this;
+
+      let v = this.isValid();
+      if (v !== true) return v;
+
+      str = str || "l";
+      let formatStr = FORMAT_LIST[str] || str;
+      return Utils.UTCformat(m._date, formatStr);
+    },
     toString() {
       let v = this.isValid();
       if (v !== true) return v;
       return this._date.toString();
     },
-    toISOString() {
-      // let v = this.isValid();
-      // if (v !== true) return v;
-      // return this._date.toISOString();
+    toISOString(utcZone) {
       let v = this.isValid();
       if (v !== true) return v;
-      let offset = -this._date.getTimezoneOffset();
+      let offset = 0;
+      if(utcZone!==undefined){
+        offset = utcZone*60;
+      }else{
+        offset = -this._date.getTimezoneOffset();
+      }
       let dif = offset >= 0 ? '+' : '-';
-      return this.format("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
+      let times = manba(this.time()+offset*60*1000);
+      return times.UTCformat("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
     },
     toLocalString() {
       let v = this.isValid();

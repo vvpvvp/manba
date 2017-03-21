@@ -213,6 +213,16 @@ var expect = require('chai').expect;
 
   });
 
+  describe('manba iso', function () {
+    it('本地ISO格式', function () {
+      expect(manba('2016-07-23 12:12:12').toISOString()).to.equal("2016-07-23T12:12:12+08:00");
+    });
+
+    it('定制化ISO格式', function () {
+      expect(manba('2016-07-23 12:12:12').toISOString(+7)).to.equal("2016-07-23T11:12:12+07:00");
+    });
+  });
+
   describe('manba config', function () {
 
     it('设定其他快捷格式化', function () {
