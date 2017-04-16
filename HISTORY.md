@@ -44,3 +44,19 @@
   * fixed bug : wrong result for function add with momont.MONTH
 
 ==================
+
+
+manba0.0.11 / 2017-04-15
+==================
+
+  * fixed bug : Throw error when parse failed.
+
+==================
+
+
+manba0.0.11 / 2017-04-16
+==================
+
+  * fixed bug : manba() return new object not old one.
+
+==================

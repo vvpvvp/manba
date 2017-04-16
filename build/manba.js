@@ -1,14 +1,14 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _bind = Function.prototype.bind;
+var _slice = Array.prototype.slice;
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
 (function (global, factory) {
-  (typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.manba = factory();
-})((typeof window === 'undefined' ? 'undefined' : _typeof(window)) == 'object' ? window : (typeof global === 'undefined' ? 'undefined' : _typeof(global)) == 'object' ? global : undefined, function () {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.manba = factory();
+})(typeof window == 'object' ? window : typeof global == 'object' ? global : undefined, function () {
   "use strict";
-
   var FORMAT_LIST = {
     "l": "YYYY-MM-DD",
     "ll": "YYYY年MM月DD日",
@@ -33,7 +33,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var WEEK = ['日', '一', '二', '三', '四', '五', '六'];
   var DAY_STRING = ['上午', '下午'];
   var _manba = function _manba() {
-    Utils.initmanba.apply(Utils, [this].concat(Array.prototype.slice.call(arguments)));
+    Utils.initmanba.apply(Utils, [this].concat(_slice.call(arguments)));
   };
 
   var Utils = {
@@ -46,7 +46,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           _date.setTime(arg_1);
         } else if (Utils.isArray(arg_1)) {
           Utils.padMonth(arg_1);
-          _date = new (Function.prototype.bind.apply(Date, [null].concat(_toConsumableArray(arg_1))))();
+          _date = new (_bind.apply(Date, [null].concat(_toConsumableArray(arg_1))))();
         } else if (Utils.isDate(arg_1)) {
           _date = arg_1;
         } else if (Utils.isString(arg_1)) {
@@ -71,12 +71,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         matched.shift();
         Utils.padMonth(matched);
         Utils.popUndefined(matched);
-        return new (Function.prototype.bind.apply(Date, [null].concat(_toConsumableArray(matched))))();
+        return new (_bind.apply(Date, [null].concat(_toConsumableArray(matched))))();
       }
       var date = new Date(str);
       if (date == "Invalid Date") {
-        console.error("Invalid date parse from \"" + str + "\"");
-        return null;
+        // console.error("Invalid date parse from \"" + str + "\"");
+        // return null;
+        throw new Error('Invalid date parse from ' + str);
       } else {
         return date;
       }
@@ -426,7 +427,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var manba = function manba(param) {
     if (param instanceof _manba) {
-      return param;
+      return new _manba(param);
     } else if (Utils.isObject(param)) {
       //config
       if (param.formatString && Utils.isObject(param.formatString)) {

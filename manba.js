@@ -70,8 +70,9 @@
       }
       let date = new Date(str);
       if (date == "Invalid Date") {
-        console.error("Invalid date parse from \"" + str + "\"");
-        return null;
+        // console.error("Invalid date parse from \"" + str + "\"");
+        // return null;
+        throw new Error(`Invalid date parse from ${str}`);
       } else {
         return date;
       }
@@ -423,7 +424,7 @@
 
   let manba = function (param) {
     if (param instanceof _manba) {
-      return param;
+      return new _manba(param);
     } else if (Utils.isObject(param)) {
       //config
       if (param.formatString && Utils.isObject(param.formatString)) {

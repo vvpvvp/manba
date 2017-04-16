@@ -1,6 +1,6 @@
 {
     "name": "manba",
-    "version": "0.0.10",
+    "version": "0.0.16",
     "description": "javascript 日期处理",
     "main": "build/manba.js",
     "repository": {
@@ -22,9 +22,6 @@
     "dependencies": {},
     "bugs": {
         "url": "https://github.com/vvpvvp/manba/issues"
-    },
-    "babel": {
-        "presets": ["es2015"]
     },
     "scripts": {
         "build": "babel ./manba.js -d build",
