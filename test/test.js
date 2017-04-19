@@ -1,4 +1,5 @@
-var manba = require('../manba');
+var manba = require('../build/manba');
+console.log(manba);
 var expect = require('chai').expect;
 (function () {
   'use strict';
