@@ -4,6 +4,10 @@ var expect = require('chai').expect;
   'use strict';
 
   describe('初始化manba', function () {
+    it('使用manba初始化', function () {
+      let d = new manba();
+      expect(manba(d).toString()).to.equal(d.toString());
+    });
     it('使用date初始化', function () {
       let d = new Date();
       expect(manba(d).toString()).to.equal(d.toString());
@@ -192,23 +196,23 @@ var expect = require('chai').expect;
   describe('manba distance', function () {
 
     it('manba distance manba.DAY', function () {
-      expect(manba('2016-07-23').distance(manba('2015-07-23'),manba.DAY)).to.equal(366);
+      expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.DAY)).to.equal(366);
     });
 
     it('manba distance manba.MONTH', function () {
-      expect(manba('2016-07-23').distance(manba('2015-07-23'),manba.MONTH)).to.equal(12);
+      expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.MONTH)).to.equal(12);
     });
 
     it('manba distance manba.YEAR', function () {
-      expect(manba('2016-07-23').distance(manba('2015-07-23'),manba.YEAR)).to.equal(1);
+      expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.YEAR)).to.equal(1);
     });
 
     it('manba distance manba.HOUR', function () {
-      expect(manba('2016-07-23').distance(manba('2015-07-23'),manba.HOUR)).to.equal(8784);
+      expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.HOUR)).to.equal(8784);
     });
 
     it('manba distance manba.HOUR', function () {
-      expect(manba('2016-07-23').distance(manba('2015-07-23'),manba.MINUTE)).to.equal(527040);
+      expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.MINUTE)).to.equal(527040);
     });
 
   });

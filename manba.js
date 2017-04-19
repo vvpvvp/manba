@@ -29,6 +29,7 @@
   const DAY_STRING = ['上午', '下午'];
   let _manba = function () {
     Utils.initmanba(this, ...arguments);
+    return this;
   };
 
   let Utils = {
@@ -203,7 +204,7 @@
       let formatStr = FORMAT_LIST[str] || str;
       return Utils.format(m._date, formatStr);
     },
-    UTCformat(str){
+    UTCformat(str) {
       let m = this;
 
       let v = this.isValid();
@@ -222,13 +223,13 @@
       let v = this.isValid();
       if (v !== true) return v;
       let offset = 0;
-      if(utcZone!==undefined){
-        offset = utcZone*60;
-      }else{
+      if (utcZone !== undefined) {
+        offset = utcZone * 60;
+      } else {
         offset = -this._date.getTimezoneOffset();
       }
       let dif = offset >= 0 ? '+' : '-';
-      let times = manba(this.time()+offset*60*1000);
+      let times = manba(this.time() + offset * 60 * 1000);
       return times.UTCformat("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
     },
     toLocalString() {
@@ -247,33 +248,33 @@
       v = _m.isValid();
       if (v !== true) return v;
       switch (type) {
-        case manba.MINUTE:
-          return Math.floor((m.time() - _m.time()) / 60 / 1000);
-        case manba.HOUR:
-          return Utils.getHours(m._date) - Utils.getHours(_m._date);
-        case manba.DAY:
-          return Utils.getDays(m._date) - Utils.getDays(_m._date);
-        case manba.MONTH:
-          return Utils.getMonths(m._date) - Utils.getMonths(_m._date);
-        case manba.YEAR:
-          return m._date.getYear() - _m._date.getYear();
+      case manba.MINUTE:
+        return Math.floor((m.time() - _m.time()) / 60 / 1000);
+      case manba.HOUR:
+        return Utils.getHours(m._date) - Utils.getHours(_m._date);
+      case manba.DAY:
+        return Utils.getDays(m._date) - Utils.getDays(_m._date);
+      case manba.MONTH:
+        return Utils.getMonths(m._date) - Utils.getMonths(_m._date);
+      case manba.YEAR:
+        return m._date.getYear() - _m._date.getYear();
       }
       return 0;
     },
     getWeekOfYear(weekStart) {
-      weekStart = (weekStart || 0) - 0;  
-      if(isNaN(weekStart) || weekStart > 6){
+      weekStart = (weekStart || 0) - 0;
+      if (isNaN(weekStart) || weekStart > 6) {
         weekStart = 0;
-      }  
-      var year = this.year();  
-      var firstDay = this.startOf(manba.YEAR);  
-      var firstWeekDays = 7 - firstDay.day() + weekStart;  
-      var dayOfYear = ((this.startOf(manba.DAY).time() - firstDay.time()) / (24 * 3600 * 1000)) + 1;  
-      return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;  
+      }
+      var year = this.year();
+      var firstDay = this.startOf(manba.YEAR);
+      var firstWeekDays = 7 - firstDay.day() + weekStart;
+      var dayOfYear = ((this.startOf(manba.DAY).time() - firstDay.time()) / (24 * 3600 * 1000)) + 1;
+      return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;
     },
     getWeekOfMonth(weekStart) {
-      weekStart = (weekStart || 0) - 0;  
-      if(isNaN(weekStart) || weekStart > 6){
+      weekStart = (weekStart || 0) - 0;
+      if (isNaN(weekStart) || weekStart > 6) {
         weekStart = 0;
       }
       let dayOfWeek = this.day();
@@ -319,34 +320,34 @@
       type = type || manba.DAY;
 
       switch (type) {
-        case manba.DAY:
-          m.time(m.time() + (num * _DAYS));
-          break;
-        case manba.MONTH:
-          let month_add = m.month() + num;
-          // let year_add = Math.floor(month_add / 12);
-          // month_add = month_add % 12;
-          // m.add(year_add, manba.YEAR);
-          m.month(month_add);
-          break;
-        case manba.YEAR:
-          m.year(m.year() + num);
-          break;
-        case manba.WEEK:
-          m.time(m.time() + (num * _WEEKS));
-          break;
-        case manba.HOUR:
-          m.time(m.time() + (num * _HOURS));
-          break;
-        case manba.MINUTE:
-          m.time(m.time() + (num * _MINUTES));
-          break;
-        case manba.SECOND:
-          m.time(m.time() + (num * _SECONDS));
-          break;
-        case manba.TIME:
-          m.time(m.time() + (num));
-          break;
+      case manba.DAY:
+        m.time(m.time() + (num * _DAYS));
+        break;
+      case manba.MONTH:
+        let month_add = m.month() + num;
+        // let year_add = Math.floor(month_add / 12);
+        // month_add = month_add % 12;
+        // m.add(year_add, manba.YEAR);
+        m.month(month_add);
+        break;
+      case manba.YEAR:
+        m.year(m.year() + num);
+        break;
+      case manba.WEEK:
+        m.time(m.time() + (num * _WEEKS));
+        break;
+      case manba.HOUR:
+        m.time(m.time() + (num * _HOURS));
+        break;
+      case manba.MINUTE:
+        m.time(m.time() + (num * _MINUTES));
+        break;
+      case manba.SECOND:
+        m.time(m.time() + (num * _SECONDS));
+        break;
+      case manba.TIME:
+        m.time(m.time() + (num));
+        break;
       }
       return m;
     },
@@ -370,33 +371,33 @@
       let m = new _manba(this);
       type = type || manba.DAY;
       switch (type) {
-        case manba.DAY:
-          m.milliseconds(0);
-          m.seconds(0);
-          m.minutes(0);
-          m.hours(0);
-          break;
-        case manba.MONTH:
-          m.date(1);
-          m = m.startOf(manba.DAY);
-          break;
-        case manba.WEEK:
-          m = m.startOf(manba.DAY);
-          set = set || manba.SUNDAY;
-          let startDay = set == manba.SUNDAY ? 0 : 1;
-          if (m.day() == 0 && startDay == 1) {
-            startDay = -6;
-          }
-          m.add(-m.day() + startDay, manba.DAY);
-          break;
-        case manba.YEAR:
-          m.month(1);
-          m.date(1);
-          m = m.startOf(manba.DAY);
-          break;
-        case manba.HOUR:
-          m.time(Math.floor((m.time()) / _HOURS) * _HOURS);
-          break;
+      case manba.DAY:
+        m.milliseconds(0);
+        m.seconds(0);
+        m.minutes(0);
+        m.hours(0);
+        break;
+      case manba.MONTH:
+        m.date(1);
+        m = m.startOf(manba.DAY);
+        break;
+      case manba.WEEK:
+        m = m.startOf(manba.DAY);
+        set = set || manba.SUNDAY;
+        let startDay = set == manba.SUNDAY ? 0 : 1;
+        if (m.day() == 0 && startDay == 1) {
+          startDay = -6;
+        }
+        m.add(-m.day() + startDay, manba.DAY);
+        break;
+      case manba.YEAR:
+        m.month(1);
+        m.date(1);
+        m = m.startOf(manba.DAY);
+        break;
+      case manba.HOUR:
+        m.time(Math.floor((m.time()) / _HOURS) * _HOURS);
+        break;
       }
       return m;
     },

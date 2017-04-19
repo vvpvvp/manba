@@ -1,33 +1,33 @@
 {
-    "name": "manba",
-    "version": "0.0.16",
-    "description": "javascript 日期处理",
-    "main": "build/manba.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/vvpvvp/manba.git"
-    },
-    "keywords": [
-        "manba",
-        "date"
-    ],
-    "author": {
-        "name": "alias"
-    },
-    "license": "The MIT License",
-    "_npmUser": {
-        "name": "vvpvvp",
-        "email": "a8918929@sina.com.cn"
-    },
-    "dependencies": {},
-    "bugs": {
-        "url": "https://github.com/vvpvvp/manba/issues"
-    },
-    "scripts": {
-        "build": "babel ./manba.js -d build",
-        "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js",
-        "test": "mocha --compilers js:babel-core/register ./test/*.js"
-    },
-    "homepage": "https://github.com/vvpvvp/manba#readme",
-    "readmeFilename": "README.md"
+  "name": "manba",
+  "version": "0.0.17",
+  "description": "javascript 日期处理",
+  "main": "build/manba.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vvpvvp/manba.git"
+  },
+  "keywords": [
+    "manba",
+    "date"
+  ],
+  "author": {
+    "name": "alias"
+  },
+  "license": "The MIT License",
+  "_npmUser": {
+    "name": "vvpvvp",
+    "email": "a8918929@sina.com.cn"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/vvpvvp/manba/issues"
+  },
+  "scripts": {
+    "build": "babel ./manba.js -d build",
+    "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js",
+    "test": "mocha --compilers js:babel-core/register ./test/*.js"
+  },
+  "homepage": "https://github.com/vvpvvp/manba#readme",
+  "readmeFilename": "README.md"
 }
