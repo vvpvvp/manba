@@ -1,5 +1,4 @@
-var manba = require('../build/manba');
-console.log(manba);
+var manba = require('../manba');
 var expect = require('chai').expect;
 (function () {
   'use strict';
@@ -16,9 +15,9 @@ var expect = require('chai').expect;
     it('使用time初始化', function () {
       expect(manba(1482913870836).format("f")).to.equal("2016-12-28 16:31:10");
     });
-    it('使用秒初始化', function () {
-      expect(manba(1482913870).format("f")).to.equal("2016-12-28 16:31:10");
-    });
+    // it('使用秒初始化', function () {
+    //   expect(manba(1482913870).format("f")).to.equal("2016-12-28 16:31:10");
+    // });
     it('使用秒初始化', function () {
       expect(manba(1482913870).format("f")).to.equal("2016-12-28 16:31:10");
     });
@@ -42,6 +41,15 @@ var expect = require('chai').expect;
     });
     it('使用日期格式字符串201412031223初始化', function () {
       expect(manba("201412031223").format("f")).to.equal("2014-12-03 12:23:00");
+    });
+    it('使用parse初始化', function () {
+      expect(manba("120320142312", "MMDDYYYYmmHH").format("f")).to.equal("2014-12-03 12:23:00");
+    });
+    it('使用parse初始化2', function () {
+      expect(manba("2014年12月03日 12时23分", "YYYY年MM月DD日 HH时mm分").format("f")).to.equal("2014-12-03 12:23:00");
+    });
+    it('使用parse初始化3', function () {
+      expect(manba("2014年12月03日 12时23分", "YYYY年MM月DD日 HH时mm分").format("f")).to.equal("2014-12-03 12:23:00");
     });
   });
 
@@ -110,6 +118,10 @@ var expect = require('chai').expect;
 
     it('manba add manba.YEAR', function () {
       expect(manba(1468970113000).add(-1, manba.YEAR).format("f")).to.equal("2015-07-20 07:15:13");
+    });
+
+    it('manba add manba.YEAR2', function () {
+      expect(manba(1468970113000).add(-2000, manba.YEAR).format("f")).to.equal("16-07-20 07:15:13");
     });
 
     it('manba add manba.MINUTE', function () {
@@ -226,6 +238,11 @@ var expect = require('chai').expect;
     it('定制化ISO格式', function () {
       expect(manba('2016-07-23 12:12:12').toISOString(+7)).to.equal("2016-07-23T11:12:12+07:00");
     });
+
+    it('UTCformat', function () {
+      expect(manba('2016-07-23 07:00:00').UTCformat("YYYY-MM-DD")).to.equal("2016-07-22");
+    });
+
   });
 
   describe('manba config', function () {

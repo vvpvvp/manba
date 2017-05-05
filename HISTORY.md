@@ -60,3 +60,13 @@ manba0.0.11 / 2017-04-16
   * fixed bug : manba() return new object not old one.
 
 ==================
+
+
+
+manba0.0.11 / 2017-19-14
+==================
+
+  * fixed bug : remove seconds init.
+
+==================
+

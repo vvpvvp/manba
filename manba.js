@@ -260,22 +260,22 @@ class Manba {
 }
 
 let Utils = {
-  initmanba(manba_obj, arg_1, type) {
+  initmanba(manba_obj, arg1, arg2) {
     let _date = new Date(),
       date_bak = _date;
-    if (arg_1 != undefined) {
-      if (Utils.isNumber(arg_1)) {
-        if (arg_1 < 9999999999) arg_1 = arg_1 * 1000;
-        _date.setTime(arg_1);
-      } else if (Utils.isArray(arg_1)) {
-        Utils.padMonth(arg_1);
-        _date = new Date(...arg_1);
-      } else if (Utils.isDate(arg_1)) {
-        _date = arg_1;
-      } else if (Utils.isString(arg_1)) {
-        _date = Utils.parse(arg_1);
-      } else if (arg_1 instanceof Manba) {
-        _date = new Date(arg_1.time());
+    if (arg1 != undefined) {
+      if (Utils.isNumber(arg1)) {
+        // if (arg1 < 9999999999) arg1 = arg1 * 1000;
+        _date.setTime(arg1);
+      } else if (Utils.isArray(arg1)) {
+        Utils.padMonth(arg1);
+        _date = new Date(...arg1);
+      } else if (Utils.isDate(arg1)) {
+        _date = arg1;
+      } else if (Utils.isString(arg1)) {
+        _date = Utils.parse(arg1, arg2);
+      } else if (arg1 instanceof Manba) {
+        _date = new Date(arg1.time());
       }
     }
     manba_obj._date = _date;
@@ -287,7 +287,22 @@ let Utils = {
     let norm = Math.abs(Math.floor(num));
     return (norm < 10 ? '0' : '') + norm;
   },
-  parse(str) {
+  parse(str, arg2) {
+    if (Utils.isString(arg2)) {
+      let obj = { Y: 0, M: 1, D: 0, H: 0, m: 0, S: 0 };
+      arg2.replace(/([^YyMDdHhmsS]*?)(([YyMDdHhmsS])\3*)([^YyMDdHhmsS]*?)/g, function (m, $1, $2, $3, $4, idx, old) {
+        let num = parseInt(str.substr(idx + $1.length, $2.length), 10);
+        if ($3.toLowerCase() == 'm') {
+          obj[$3] = num;
+        } else {
+          obj[$3.toUpperCase()] = num;
+        }
+        return '';
+      });
+      obj.M--;
+      let date = new Date(obj.Y, obj.M, obj.D, obj.H, obj.m, obj.S);
+      return date;
+    }
     let aspNetJsonRegex = /^(\d{4})\-?(\d{2})\-?(\d{2})\s?\:?(\d{2})?\:?(\d{2})?\:?(\d{2})?$/i;
     let matched = aspNetJsonRegex.exec(str);
     if (matched !== null) {
@@ -435,7 +450,7 @@ for (let unit in methods) {
   manbaPrototype__proto[unit] = Utils.makeGetSet(methods[unit]);
 }
 
-let manba = function (param) {
+let manba = function (param, arg2) {
   if (param instanceof Manba) {
     return new Manba(param);
   } else if (Utils.isObject(param)) {
@@ -447,7 +462,7 @@ let manba = function (param) {
       timeDelay = manba(param.now).time() - manba().time();
     }
   } else {
-    return new Manba(param);
+    return new Manba(param, arg2);
   }
 };
 

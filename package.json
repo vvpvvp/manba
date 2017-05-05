@@ -1,6 +1,6 @@
 {
   "name": "manba",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "javascript 日期处理",
   "main": "build/manba.js",
   "repository": {
@@ -15,10 +15,6 @@
     "name": "alias"
   },
   "license": "The MIT License",
-  "_npmUser": {
-    "name": "vvpvvp",
-    "email": "a8918929@sina.com.cn"
-  },
   "dependencies": {},
   "bugs": {
     "url": "https://github.com/vvpvvp/manba/issues"
