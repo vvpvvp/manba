@@ -17,10 +17,10 @@ var expect = require('chai').expect;
     });
     // it('使用秒初始化', function () {
     //   expect(manba(1482913870).format("f")).to.equal("2016-12-28 16:31:10");
+    // // });
+    // it('使用秒初始化', function () {
+    //   expect(manba(1482913870).format("f")).to.equal("2016-12-28 16:31:10");
     // });
-    it('使用秒初始化', function () {
-      expect(manba(1482913870).format("f")).to.equal("2016-12-28 16:31:10");
-    });
     it('使用日期数组', function () {
       expect(manba([2016, 11, 23, 4, 3, 5]).format("f")).to.equal("2016-11-23 04:03:05");
     });
@@ -35,6 +35,9 @@ var expect = require('chai').expect;
     });
     it('使用日期格式字符串2014-12-03 12:34:34初始化', function () {
       expect(manba("2014-12-03 12:34:34").format("f")).to.equal("2014-12-03 12:34:34");
+    });
+    it('使用日期格式字符串123-12-03 12:34:34初始化', function () {
+      expect(manba("384-10-02").toISOString()).to.equal("384-10-02T00:00:00+08:00");
     });
     it('使用日期格式字符串20141203初始化', function () {
       expect(manba("20141203").format("f")).to.equal("2014-12-03 00:00:00");
@@ -224,8 +227,20 @@ var expect = require('chai').expect;
       expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.HOUR)).to.equal(8784);
     });
 
-    it('manba distance manba.HOUR', function () {
+    it('manba distance manba.MINUTE', function () {
       expect(manba('2016-07-23').distance(manba('2015-07-23'), manba.MINUTE)).to.equal(527040);
+    });
+
+    it('manba distance manba.WEEK1', function () {
+      expect(manba('2017-08-10').distance(manba('2017-08-06'), manba.WEEK, manba.MONDAY)).to.equal(1);
+    });
+
+    it('manba distance manba.WEEK2', function () {
+      expect(manba('2017-08-10').distance(manba('2017-08-06'), manba.WEEK, manba.SUNDAY)).to.equal(0);
+    });
+
+    it('manba distance manba.WEEK3', function () {
+      expect(manba('2017-07-01').distance(manba('2017-08-06'), manba.WEEK, manba.SUNDAY)).to.equal(-6);
     });
 
   });

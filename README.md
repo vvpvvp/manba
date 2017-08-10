@@ -150,6 +150,21 @@ manba("2012-09-21").distance("2012-08-20 23:59:59",manba.MONTH)
 manba("2012-09-21").distance("2011-09-20 23:59:59",manba.YEAR) 
 //两个日期间相隔年数 1
 
+manba('2017-07-01').distance(manba('2017-08-06'), manba.WEEK, manba.SUNDAY)
+//两个日期间相隔星期数 -6
+
+manba('2017-08-10').distance(manba('2017-08-06'), manba.WEEK, manba.SUNDAY)
+//两个日期间相隔星期数 0
+
+manba('2017-08-10').distance(manba('2017-08-06'), manba.WEEK, manba.MONDAY)
+//两个日期间相隔星期数 1
+
+manba('2016-07-23').distance(manba('2015-07-23'), manba.MINUTE)
+//两个日期间相隔分钟 527040
+
+manba('2016-07-23').distance(manba('2015-07-23'), manba.HOUR)
+//两个日期间相隔小时数 8784
+
 ```
 ### add
 `add`方法，对日期做加减法，只有add函数，如果需要减法，则传递负数。

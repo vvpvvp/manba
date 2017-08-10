@@ -81,7 +81,7 @@ class Manba {
     return this.format("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
   }
 
-  distance(_m, type) {
+  distance(_m, type, weekStart) {
     let v = this.isValid();
     if (v !== true) return v;
     let m = this;
@@ -96,6 +96,8 @@ class Manba {
       return Utils.getHours(m._date) - Utils.getHours(_m._date);
     case manba.DAY:
       return Utils.getDays(m._date) - Utils.getDays(_m._date);
+    case manba.WEEK:
+      return (Utils.getDays(m.startOf(manba.WEEK, weekStart)._date) - Utils.getDays(_m.startOf(manba.WEEK, weekStart)._date)) / 7;
     case manba.MONTH:
       return Utils.getMonths(m._date) - Utils.getMonths(_m._date);
     case manba.YEAR:
