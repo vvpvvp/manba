@@ -177,10 +177,10 @@ class Manba {
       break;
     case manba.MONTH:
       let month_add = m.month() + num;
-      // let year_add = Math.floor(month_add / 12);
-      // month_add = month_add % 12;
-      // m.add(year_add, manba.YEAR);
       m.month(month_add);
+      break;
+    case manba.QUARTER:
+      m.month(m.month() + num * 3);
       break;
     case manba.YEAR:
       m.year(m.year() + num);
@@ -234,6 +234,10 @@ class Manba {
     case manba.MONTH:
       m.date(1);
       m = m.startOf(manba.DAY);
+      break;
+    case manba.QUARTER:
+      m = m.startOf(manba.MONTH);
+      m.add( - ( m.month() - 1 ) % 3 , manba.MONTH );
       break;
     case manba.WEEK:
       m = m.startOf(manba.DAY);
@@ -485,6 +489,7 @@ manba.MONTH = 6;
 manba.YEAR = 7;
 manba.WEEK = 8;
 manba.TIME = 9;
+manba.QUARTER = 10;
 
 manba.MONDAY = 1;
 manba.TUESDAY = 2;

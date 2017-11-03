@@ -259,6 +259,22 @@ var expect = require('chai').expect;
     });
 
   });
+  
+  describe('manba quarter', function () {
+
+    it('quarter startOf', function () {
+      expect(manba('2016-07-23 12:12:12').startOf(manba.QUARTER).format("f")).to.equal("2016-07-01 00:00:00");
+    });
+
+    it('quarter endOf', function () {
+      expect(manba('2016-07-23 07:00:00').endOf(manba.QUARTER).format("f")).to.equal("2016-09-30 23:59:59");
+    });
+
+    it('quarter add', function () {
+      expect(manba('2016-07-23 12:12:12').add(1, manba.QUARTER).format("f")).to.equal("2016-10-23 12:12:12");
+    });
+
+  });
 
   describe('manba config', function () {
 

@@ -210,6 +210,9 @@ manba("2012-10-03 23:59:59").startOf(manba.WEEK).format("fff")
 
 manba("2012-10-03 23:59:59").startOf(manba.WEEK,manba.MONDAY).format("fff")
 //2012年10月01日 00点00分00秒 星期一
+
+manba('2016-07-23 12:12:12').startOf(manba.QUARTER).format("f")
+//2016-07-01 00:00:00
 ```
 
 
@@ -233,6 +236,9 @@ manba("2012-10-03 23:59:59").endOf(manba.WEEK).format("fff")
 
 manba("2012-10-03 23:59:59").endOf(manba.WEEK,manba.MONDAY).format("fff")
 //2012年10月07日 23点59分59秒 星期日
+
+manba('2016-07-23 12:12:12').endOf(manba.QUARTER).format("f")
+//2016-09-30 23:59:59
 ```
 
 ### 星期数
