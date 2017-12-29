@@ -153,7 +153,7 @@ var expect = require('chai').expect;
     });
 
     it('manba startOf manba.WEEK', function () {
-      expect(manba(1468970113000).startOf(manba.WEEK).format("f")).to.equal("2016-07-17 00:00:00");
+      expect(manba(1468970113000).startOf(manba.WEEK, manba.MONDAY).format("f")).to.equal("2016-07-18 00:00:00");
     });
   });
 

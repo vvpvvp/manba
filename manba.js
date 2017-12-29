@@ -204,6 +204,10 @@ class Manba {
     return m;
   }
 
+  clone() {
+    return new Manba(this);
+  }
+
   endOf(type, set) {
     let v = this.isValid();
     if (v !== true) return v;

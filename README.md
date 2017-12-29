@@ -1,34 +1,64 @@
 
 # manba
-<img src="http://manba.ch-un.com/images/logo.png" alt="manba" width="100"><br/>
-超级简洁的日期处理Util，比moment.js小很多。  
-![manba](https://img.shields.io/badge/manba-1.1.15-red.svg)
+超级简洁的日期处理Util，比moment.js小很多。
 
-## 官方网站
+## website
 
 [http://manba.ch-un.com](http://manba.ch-un.com)
 
-## 安装
-```
+## install
+```sh
 npm install manba
 ```
 建议本地安装
-```
+```sh
 npm install --save manba
 ```
 
-## NPM
+## npm
 
 [https://www.npmjs.com/package/manba](https://www.npmjs.com/package/manba)
 
-## 文档
-### 初始化数据
+## Api
+
+### 配置
+
+#### 定义简洁的格式化
+
+```javascript
+manba.config({
+    formatString: {
+        "r": "YYYY"
+    },
+}
+
+manba().format("r") // 2017
+
+```
+
+#### 设定当前时间
+设置前端与后端的时间差，这样前端也可以使用manba()获取当前时间。
+
+```javascript
+manba.config({
+    now:"2016-07-11T18:42:34.453+08:00"
+}
+
+manba().format() // 2016-07-11
+```
+
+### init
 
 初始化的时候，对月份做了修补。
 
-`manba(String|Number|Date|Array)`
+`manba(String|Number|Date|Array|Manba)`
 
 ```javascript
+let now = manba() // 定义当前时间的manba对象
+let sevenDay = now.clone().add(7, manba.DAY) //定义七天后的日期
+let twoDay = manba(now).add(2, manba.DAY) //定义两天后的日期
+let month = now.startOf(manba.MONTH) //定义月初的日期
+
 manba(1459235037).format() //秒 2016-03-29
 manba(1459235037000).format() //毫秒 2016-03-29
 manba([2016,12,23,4,3,5]).format("f") 
@@ -40,10 +70,28 @@ manba("2014-12-03 12:34").format("f") //2014-12-03 12:34:00
 manba("2014-12-03 12:34:12").format("f") //2014-12-03 12:34:34
 manba("20141203").format("f") //2014-12-03 00:00:00
 manba("201412031223").format("f") //2014-12-03 12:23:00
+
 ```
 
-### format
-格式化日期转换标准
+### get
+`month()`方法，对月份做了修补。
+
+```javascript
+manba().year() //2016
+manba().year(2018).format() //2018-03-29
+manba().month() //2016-03-29
+manba().month(4).format() //2016-04-29
+manba().minutes() //59
+manba().minutes(34)
+manba().time() //1459242450800
+manba().time(123131312321).format() //1973-11-26
+manba().date() //29
+manba().date(4).format() //2016-03-04
+```
+
+### 格式化
+
+#### 格式化日期转换标准
 - YYYY/yyyy:年份
 - M:月份
 - MM:月份，个位补充0
@@ -58,7 +106,7 @@ manba("201412031223").format("f") //2014-12-03 12:23:00
 - w:星期，返回中文：['日', '一', '二', '三', '四', '五', '六']
 - q:上下午，返回中文：['上午', '下午']
 
-#### 内置简洁的格式化
+#### 简洁的格式化
 - "l": "YYYY-MM-DD",
 - "ll": "YYYY年MM月DD日",
 - "k": "YYYY-MM-DD hh:mm",
@@ -87,38 +135,29 @@ manba().format("n") // 03-29
 manba().format("nn") // 03月29日
 manba().format("YYYY") // 2016
 ```
-#### 定制简洁格式
+
+### toString
+
+`toString()`方法，输出本地的日期格式。
 
 ```javascript
-manba.config({
-    formatString: {
-        "r": "YYYY"
-    },
-    now:"2016-07-11T18:42:34.453+08:00"
-}
-
-//now参数可以设置前端与后端的时间差，这样前端也可以使用manba()获取当前时间。
-
-manba().format("r") // 2016
-
+manba().toString()
 ```
 
-### 获取数值函数
-`month()`方法，对月份做了修补。
+### isLeapYear
+
+`clone()`方法，判断是否为闰年。
 
 ```javascript
-manba().year() //2016
-manba().year(2018).format() //2018-03-29
-manba().month() //2016-03-29
-manba().month(4).format() //2016-04-29
-manba().minutes() //59
-manba().minutes(34)
-manba().time() //1459242450800
-manba().time(123131312321).format() //1973-11-26
-manba().date() //29
-manba().date(4).format() //2016-03-04
 manba().isLeapYear() //是否为闰年 true
-manba().toString()
+```
+
+### clone
+
+`clone()`方法，可以复制一个manba对象。
+
+```javascript
+manba().clone() //复制manba对象，
 ```
 
 ### ISOString
@@ -241,7 +280,7 @@ manba('2016-07-23 12:12:12').endOf(manba.QUARTER).format("f")
 //2016-09-30 23:59:59
 ```
 
-### 星期数
+### week
 ```javascript
 //获取当月的星期数
 //manba.SUNDAY 星期日开始
