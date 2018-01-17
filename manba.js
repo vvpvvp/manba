@@ -176,8 +176,13 @@ class Manba {
       m.time(m.time() + (num * _DAYS));
       break;
     case manba.MONTH:
+      let originDay = m.date();
       let month_add = m.month() + num;
       m.month(month_add);
+      if (m.date() != originDay) {
+        m.add(-1, manba.MONTH);
+        m = m.endOf(manba.MONTH);
+      }
       break;
     case manba.QUARTER:
       m.month(m.month() + num * 3);
