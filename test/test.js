@@ -108,11 +108,11 @@ var expect = require('chai').expect;
   describe('manba add', function () {
 
     it('manba add manba.MONTH', function () {
-      expect(manba('2017-12-31').add(2, manba.MONTH).format()).to.equal("2018-02-28");
+      expect(manba('2017-12-31 02:01').add(2, manba.MONTH).format("f")).to.equal("2018-02-28 02:01:00");
     });
 
     it('manba add manba.MONTH', function () {
-      expect(manba('2017-12-31').add(-6, manba.MONTH).format()).to.equal("2017-06-30");
+      expect(manba('2017-12-31 02:01').add(-6, manba.MONTH).format("f")).to.equal("2017-06-30 02:01:00");
     });
 
     it('manba add manba.DAY', function () {

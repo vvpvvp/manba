@@ -181,7 +181,7 @@ class Manba {
       m.month(month_add);
       if (m.date() != originDay) {
         m.add(-1, manba.MONTH);
-        m = m.endOf(manba.MONTH);
+        m.date(m.endOf(manba.MONTH).date());
       }
       break;
     case manba.QUARTER:
