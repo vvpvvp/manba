@@ -30,7 +30,7 @@ manba.config({
     formatString: {
         "r": "YYYY"
     },
-}
+})
 
 manba().format("r") // 2017
 
@@ -42,7 +42,7 @@ manba().format("r") // 2017
 ```javascript
 manba.config({
     now:"2016-07-11T18:42:34.453+08:00"
-}
+})
 
 manba().format() // 2016-07-11
 ```
