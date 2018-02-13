@@ -146,7 +146,7 @@ manba().toString()
 
 ### isLeapYear
 
-`clone()`方法，判断是否为闰年。
+`isLeapYear()`方法，判断是否为闰年。
 
 ```javascript
 manba().isLeapYear() //是否为闰年 true
