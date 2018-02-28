@@ -258,9 +258,9 @@ class Manba {
       m.add(-m.day() + startDay, manba.DAY);
       break;
     case manba.YEAR:
+      m = m.startOf(manba.DAY);
       m.month(1);
       m.date(1);
-      m = m.startOf(manba.DAY);
       break;
     case manba.HOUR:
       m.time(Math.floor((m.time()) / _HOURS) * _HOURS);
@@ -284,7 +284,7 @@ let Utils = {
         _date.setTime(arg1);
       } else if (Utils.isArray(arg1)) {
         Utils.padMonth(arg1);
-        _date = new Date(...arg1);
+        _date = Utils.initDateWithArray(arg1);
       } else if (Utils.isDate(arg1)) {
         _date = arg1;
       } else if (Utils.isString(arg1)) {
@@ -298,9 +298,14 @@ let Utils = {
       manba_obj.add(timeDelay, manba.TIME);
     }
   },
-  pad(num) {
-    let norm = Math.abs(Math.floor(num));
-    return (norm < 10 ? '0' : '') + norm;
+  initDateWithArray(args) {
+    if(args.length > 1) {
+      return new Date(new Date(...args).setFullYear(args[0]));
+    }
+    return new Date();
+  },
+  pad(num, size = 2) {
+    return String(num).padStart(size, '0');
   },
   parse(str, arg2) {
     if (Utils.isString(arg2)) {
@@ -315,16 +320,18 @@ let Utils = {
         return '';
       });
       obj.M--;
-      let date = new Date(obj.Y, obj.M, obj.D, obj.H, obj.m, obj.S);
+      let date = Utils.initDateWithArray([obj.Y, obj.M, obj.D, obj.H, obj.m, obj.S]);;
       return date;
     }
-    let aspNetJsonRegex = /^(\d{4})\-?(\d{2})\-?(\d{2})\s?\:?(\d{2})?\:?(\d{2})?\:?(\d{2})?$/i;
+    let aspNetJsonRegex = /^(\d{4,})\-(\d{2})\-(\d{2})\s?\:?(\d{2})?\:?(\d{2})?\:?(\d{2})?$/i;
     let matched = aspNetJsonRegex.exec(str);
+    
     if (matched !== null) {
+
       matched.shift();
       Utils.padMonth(matched);
       Utils.popUndefined(matched);
-      return new Date(...matched);
+      return Utils.initDateWithArray(matched);
     }
     let date = new Date(str);
     if (date == "Invalid Date") {
@@ -351,7 +358,7 @@ let Utils = {
   },
   format(date, formatStr) {
     let str = formatStr;
-    str = str.replace(/yyyy|YYYY/, date.getFullYear());
+    str = str.replace(/yyyy|YYYY/, this.pad(date.getFullYear(), 4));
     str = str.replace(/yy|YY/, (date.getFullYear() % 100) > 8 ? (date.getFullYear() % 100).toString() : '0' + (date.getFullYear() % 100));
     str = str.replace(/MM/, date.getMonth() > 8 ? (date.getMonth() + 1).toString() : ('0' + (date.getMonth() + 1)));
     str = str.replace(/M/g, (date.getMonth() + 1));
@@ -369,7 +376,7 @@ let Utils = {
   },
   UTCformat(date, formatStr) {
     let str = formatStr;
-    str = str.replace(/yyyy|YYYY/, date.getUTCFullYear());
+    str = str.replace(/yyyy|YYYY/, this.pad(date.getFullYear(), 4));
     str = str.replace(/yy|YY/, (date.getUTCFullYear() % 100) > 8 ? (date.getUTCFullYear() % 100).toString() : '0' + (date.getUTCFullYear() % 100));
     str = str.replace(/MM/, date.getUTCMonth() > 8 ? (date.getUTCMonth() + 1).toString() : ('0' + (date.getUTCMonth() + 1)));
     str = str.replace(/M/g, (date.getUTCMonth() + 1));

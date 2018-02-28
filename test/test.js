@@ -27,6 +27,15 @@ var expect = require('chai').expect;
     it('使用简单的日期数组', function () {
       expect(manba([2015, 12, 3]).format("f")).to.equal("2015-12-03 00:00:00");
     });
+    it('时间戳初始化', function () {
+      expect(manba(1468970113000).format("f")).to.equal("2016-07-20 07:15:13");
+    });
+    it('使用大于千年的日期格式字符串初始化', function () {
+      expect(manba("10014-12-03").format("f")).to.equal("10014-12-03 00:00:00");
+    });
+    it('使用小于千年的日期格式字符串初始化', function () {
+      expect(manba("0014-12-03").format("f")).to.equal("0014-12-03 00:00:00");
+    });
     it('使用日期格式字符串2014-12-03初始化', function () {
       expect(manba("2014-12-03").format("f")).to.equal("2014-12-03 00:00:00");
     });
@@ -36,14 +45,14 @@ var expect = require('chai').expect;
     it('使用日期格式字符串2014-12-03 12:34:34初始化', function () {
       expect(manba("2014-12-03 12:34:34").format("f")).to.equal("2014-12-03 12:34:34");
     });
-    it('使用日期格式字符串123-12-03 12:34:34初始化', function () {
-      expect(manba("384-10-02").toISOString()).to.equal("384-10-02T00:00:00+08:00");
+    it('使用日期格式字符串0384-10-02 12:34:34初始化', function () {
+      expect(manba("0384-10-02").toISOString()).to.equal("0384-10-02T00:00:00+08:00");
     });
     it('使用日期格式字符串20141203初始化', function () {
-      expect(manba("20141203").format("f")).to.equal("2014-12-03 00:00:00");
+      expect(manba("20141203", "YYYYMMDD").format("f")).to.equal("2014-12-03 00:00:00");
     });
     it('使用日期格式字符串201412031223初始化', function () {
-      expect(manba("201412031223").format("f")).to.equal("2014-12-03 12:23:00");
+      expect(manba("201412031223", "YYYYMMDDHHmm").format("f")).to.equal("2014-12-03 12:23:00");
     });
     it('使用parse初始化', function () {
       expect(manba("120320142312", "MMDDYYYYmmHH").format("f")).to.equal("2014-12-03 12:23:00");
@@ -132,7 +141,7 @@ var expect = require('chai').expect;
     });
 
     it('manba add manba.YEAR2', function () {
-      expect(manba(1468970113000).add(-2000, manba.YEAR).format("f")).to.equal("16-07-20 07:15:13");
+      expect(manba(1468970113000).add(-2000, manba.YEAR).format("f")).to.equal("0016-07-20 07:15:13");
     });
 
     it('manba add manba.MINUTE', function () {
@@ -293,8 +302,8 @@ var expect = require('chai').expect;
           "po": "MM"
         }
       });
-      expect(manba("201412031223").format("r")).to.equal("2014");
-      expect(manba("201412031223").format("po")).to.equal("12");
+      expect(manba("201412031223", "YYYYMMDDHHmm").format("r")).to.equal("2014");
+      expect(manba("201412031223", "YYYYMMDDHHmm").format("po")).to.equal("12");
     });
 
     it('设定日期基准', function () {
