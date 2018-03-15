@@ -69,6 +69,7 @@ class Manba {
       offset = -this._date.getTimezoneOffset();
     }
     let dif = offset >= 0 ? '+' : '-';
+    console.log(Utils.pad(offset / 60))
     let times = manba(this.time() + offset * 60 * 1000);
     return times.UTCformat("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
   }
@@ -304,8 +305,16 @@ let Utils = {
     }
     return new Date();
   },
-  pad(num, size = 2) {
-    return String(num).padStart(size, '0');
+  pad(num, targetLength = 2) {
+    let padString = '0';
+    num = String(Math.abs(num) || 0);
+    if (num.length >= targetLength) {
+        return num;
+    } else {
+      targetLength = targetLength-num.length;
+      padString += padString.repeat(targetLength);
+      return padString.slice(0,targetLength) + String(num);
+    }
   },
   parse(str, arg2) {
     if (Utils.isString(arg2)) {
