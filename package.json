@@ -1,6 +1,6 @@
 {
   "name": "manba",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "javascript 日期处理",
   "main": "build/manba.js",
   "repository": {
@@ -20,9 +20,10 @@
     "url": "https://github.com/vvpvvp/manba/issues"
   },
   "scripts": {
-    "build": "babel ./manba.js -d build",
+    "build": "uglifyjs ./manba.js -c -o build/manba.js",
     "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js",
-    "test": "mocha --compilers js:babel-core/register ./test/*.js"
+    "test": "mocha ./test/*.js",
+    "report": "mocha --reporter mochawesome"
   },
   "homepage": "https://github.com/vvpvvp/manba#readme",
   "readmeFilename": "README.md"
