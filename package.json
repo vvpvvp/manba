@@ -20,7 +20,7 @@
     "url": "https://github.com/vvpvvp/manba/issues"
   },
   "scripts": {
-    "build": "uglifyjs ./manba.js -c -o build/manba.js",
+    "build": "uglifyjs ./manba.js -c -m -o build/manba.js",
     "min": "babel build/manba.js --minified --no-babelrc -o build/manba.min.js",
     "test": "mocha ./test/*.js",
     "report": "mocha --reporter mochawesome"
