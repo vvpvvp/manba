@@ -37,8 +37,7 @@
   var DAY_STRING = ['上午', '下午'];
 
   function _Manba(arg1, arg2) {
-    Utils.initmanba(this, arg1, arg2);
-    return this;
+    return Utils.initmanba(this, arg1, arg2);
   }
 
   _Manba.prototype.format = function (str) {
@@ -177,7 +176,7 @@
   _Manba.prototype.add = function (num, type) {
     var v = this.isValid();
     if (v !== true) return v;
-    var m = this;
+    var m = new _Manba(this);
     num = parseInt(num);
     type = type || manba.DAY;
 
@@ -190,7 +189,7 @@
       var month_add = m.month() + num;
       m.month(month_add);
       if (m.date() != originDay) {
-        m.add(-1, manba.MONTH);
+        m = m.add(-1, manba.MONTH);
         m.date(m.endOf(manba.MONTH).date());
       }
       break;
@@ -229,9 +228,9 @@
     var m = new _Manba(this);
     type = type || manba.DAY;
     m = m.startOf(type, set);
-    m.add(1, type);
+    m = m.add(1, type);
     // if (manba.DAY == type||manba.WEEK == type) {
-    m.add(-1, manba.SECOND);
+    m = m.add(-1, manba.SECOND);
     // } else {
     // m.add(-1, manba.DAY);
     // }
@@ -256,7 +255,7 @@
       break;
     case manba.QUARTER:
       m = m.startOf(manba.MONTH);
-      m.add(-(m.month() - 1) % 3, manba.MONTH);
+      m = m.add(-(m.month() - 1) % 3, manba.MONTH);
       break;
     case manba.WEEK:
       m = m.startOf(manba.DAY);
@@ -265,7 +264,7 @@
       if (m.day() == 0 && startDay == 1) {
         startDay = -6;
       }
-      m.add(-m.day() + startDay, manba.DAY);
+      m = m.add(-m.day() + startDay, manba.DAY);
       break;
     case manba.YEAR:
       m = m.startOf(manba.DAY);
@@ -304,8 +303,9 @@
       }
       manba_obj._date = _date;
       if (date_bak === _date && timeDelay != 0) {
-        manba_obj.add(timeDelay, manba.TIME);
+        manba_obj = manba_obj.add(timeDelay, manba.TIME);
       }
+      return manba_obj;
     },
     initDateWithArray: function(args) {
       if (args.length > 1) {
