@@ -321,7 +321,7 @@
         return num;
       } else {
         targetLength = targetLength - num.length;
-        padString += padString.repeat(targetLength);
+        padString += Array(targetLength+1).join(padString);
         return padString.slice(0, targetLength) + String(num);
       }
     },
