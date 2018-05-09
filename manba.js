@@ -78,7 +78,7 @@
       offset = -this._date.getTimezoneOffset();
     }
     var dif = offset >= 0 ? '+' : '-';
-    console.log(Utils.pad(offset / 60))
+    // console.log(Utils.pad(offset / 60))
     var times = manba(this.time() + offset * 60 * 1000);
     return times.UTCformat("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
   }
