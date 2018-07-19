@@ -75,20 +75,20 @@
     if (utcZone !== undefined) {
       offset = utcZone * 60;
     } else {
-      offset = -this._date.getTimezoneOffset();
+      offset = -new Date().getTimezoneOffset();
     }
     var dif = offset >= 0 ? '+' : '-';
     // console.log(Utils.pad(offset / 60))
     var times = manba(this.time() + offset * 60 * 1000);
-    return times.UTCformat("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
+    return times.UTCformat("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(parseInt(offset / 60)) + ':' + Utils.pad(offset % 60);
   }
 
   _Manba.prototype.toLocalString = function () {
     var v = this.isValid();
     if (v !== true) return v;
-    var offset = -this._date.getTimezoneOffset();
+    var offset = -new Date().getTimezoneOffset();
     var dif = offset >= 0 ? '+' : '-';
-    return this.format("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(offset / 60) + ':' + Utils.pad(offset % 60);
+    return this.format("yyyy-MM-ddThh:mm:ss") + dif + Utils.pad(parseInt(offset / 60)) + ':' + Utils.pad(offset % 60);
   }
 
   _Manba.prototype.distance = function (_m, type, weekStart) {
