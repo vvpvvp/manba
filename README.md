@@ -63,7 +63,6 @@ let sevenDay = now.clone().add(7, manba.DAY) //定义七天后的日期
 let twoDay = manba(now).add(2, manba.DAY) //定义两天后的日期
 let month = now.startOf(manba.MONTH) //定义月初的日期
 
-manba(1459235037).format() //秒 2016-03-29
 manba(1459235037000).format() //毫秒 2016-03-29
 manba([2016,12,23,4,3,5]).format("f") 
 //月份自动补充，执行：new Date(2016,11,23,4,3,5) 2016-12-23 04:03:05
