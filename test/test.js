@@ -45,14 +45,14 @@ var expect = require('chai').expect;
     it('使用日期格式字符串2014-12-03 12:34:34初始化', function () {
       expect(manba("2014-12-03 12:34:34").format("f")).to.equal("2014-12-03 12:34:34");
     });
-    it('使用日期格式字符串0384-10-02 12:34:34初始化', function () {
-      expect(manba("0384-10-02").toISOString()).to.equal("0384-10-02T00:00:00+08:00");
+    it('使用日期格式字符串0384-10-02 12:34:34  toISOString', function () {
+      expect(manba("0384-10-02").toISOString()).to.equal("0384-10-01T23:54:17+08:00");
     });
     it('使用日期格式字符串0004-01-01T07:59:59+08:00初始化', function () {
       expect(manba("0004-01-01T07:59:59+08:00").toISOString()).to.equal("0004-01-01T07:59:59+08:00");
     });
-    it('使用日期格式字符串0384-10-02 12:34:34初始化', function () {
-      expect(manba("0384-10-02").toISOString(-7)).to.equal("0384-10-01T09:00:00-07:00");
+    it('使用日期格式字符串0384-10-02 12:34:34 toISOString(-7)', function () {
+      expect(manba("0384-10-02").toISOString(-7)).to.equal("0384-10-01T08:54:17-07:00");
     });
     it('使用日期格式字符串20141203初始化', function () {
       expect(manba("20141203", "YYYYMMDD").format("f")).to.equal("2014-12-03 00:00:00");
@@ -192,7 +192,7 @@ var expect = require('chai').expect;
     });
 
     it('manba endOf manba.MONTH', function () {
-      expect(manba(1468970113000).endOf(manba.MONTH).format("f")).to.equal("2016-07-31 23:59:59");
+      expect(manba('2018-12').endOf(manba.MONTH).format("f")).to.equal("2018-12-31 23:59:59");
     });
 
     it('manba endOf manba.YEAR', function () {
@@ -270,7 +270,7 @@ var expect = require('chai').expect;
 
   describe('manba iso', function () {
     it('本地ISO格式', function () {
-      expect(manba('2016-07-23 12:12:12').toISOString()).to.equal("2016-07-23T12:12:12+08:00");
+      expect(manba('2018-12-31 23:59:59').toISOString()).to.equal("2018-12-31T23:59:59+08:00");
     });
 
     it('定制化ISO格式', function () {

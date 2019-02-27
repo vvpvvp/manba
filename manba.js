@@ -394,7 +394,7 @@
     },
     UTCformat: function(date, formatStr) {
       var str = formatStr;
-      str = str.replace(/yyyy|YYYY/, this.pad(date.getFullYear(), 4));
+      str = str.replace(/yyyy|YYYY/, this.pad(date.getUTCFullYear(), 4));
       str = str.replace(/yy|YY/, (date.getUTCFullYear() % 100) > 8 ? (date.getUTCFullYear() % 100).toString() : '0' + (date.getUTCFullYear() % 100));
       str = str.replace(/MM/, date.getUTCMonth() > 8 ? (date.getUTCMonth() + 1).toString() : ('0' + (date.getUTCMonth() + 1)));
       str = str.replace(/M/g, (date.getUTCMonth() + 1));
