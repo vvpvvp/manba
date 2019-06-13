@@ -48,6 +48,9 @@ var expect = require('chai').expect;
     it('使用日期格式字符串0384-10-02 12:34:34  toISOString', function () {
       expect(manba("0384-10-02").toISOString()).to.equal("0384-10-01T23:54:17+08:00");
     });
+    it('使用日期格式字符串2019-06-29T23:59:59+08:00  toISOString', function () {
+      expect(manba("2019-06-29T23:59:59+08:00").toISOString()).to.equal("2019-06-29T23:59:59+08:00");
+    });
     it('使用日期格式字符串0004-01-01T07:59:59+08:00初始化', function () {
       expect(manba("0004-01-01T07:59:59+08:00").toISOString()).to.equal("0004-01-01T07:59:59+08:00");
     });
