@@ -319,7 +319,7 @@ var expect = require('chai').expect;
       manba.config({
         now: "2016-10-09 00:00:00"
       });
-      expect(manba().format()).to.equal("2016-10-09");
+      expect(manba().getServerTime().format()).to.equal("2016-10-09");
     });
 
   });

@@ -48,7 +48,8 @@ manba.config({
     now:"2016-07-11T18:42:34.453+08:00"
 })
 
-manba().format() // 2016-07-11
+// 获取服务器时间
+manba().getServerTime().format() // 2016-07-11
 ```
 
 ### init

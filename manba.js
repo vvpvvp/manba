@@ -283,10 +283,16 @@
     return Utils.isDate(this._date) ? true : "Invalid Date";
   }
 
+  _Manba.prototype.getServerTime = function () {
+    if (timeDelay != 0) {
+      return this.add(timeDelay, manba.TIME);
+    }
+    return this;
+  }
+
   var Utils = {
     initmanba: function(manba_obj, arg1, arg2) {
-      var _date = new Date(),
-        date_bak = _date;
+      var _date = new Date();
       if (arg1 != undefined) {
         if (Utils.isNumber(arg1)) {
           // if (arg1 < 9999999999) arg1 = arg1 * 1000;
@@ -303,9 +309,6 @@
         }
       }
       manba_obj._date = _date;
-      if (date_bak === _date && timeDelay != 0) {
-        manba_obj.add(timeDelay, manba.TIME);
-      }
     },
     initDateWithArray: function(args) {
       if (args.length > 1) {
