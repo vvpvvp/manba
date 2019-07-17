@@ -1,10 +1,10 @@
 ;(function (name, definition) {
   var hasDefine = typeof define === 'function',
     hasExports = typeof module !== 'undefined' && module.exports;
-  if (hasDefine) {
-    define(definition);
-  } else if (hasExports) {
+  if (hasExports) {
     module.exports = definition();
+  } else if (hasDefine) {
+    define(definition);
   } else {
     this[name] = definition();
   }
