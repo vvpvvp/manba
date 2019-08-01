@@ -120,6 +120,10 @@ var expect = require('chai').expect;
       expect(manba(1475942400000).format('nn')).to.equal("10月09日");
     });
 
+    it('format parse', function () {
+      expect(manba('2019-07', 'YYYY-MM').format('YYYY-MM')).to.equal("2019-07");
+    });
+
   });
 
 

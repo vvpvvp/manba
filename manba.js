@@ -330,7 +330,7 @@
     },
     parse: function(str, arg2) {
       if (Utils.isString(arg2)) {
-        var obj = { Y: 0, M: 1, D: 0, H: 0, m: 0, S: 0 };
+        var obj = { Y: 0, M: 1, D: 1, H: 0, m: 0, S: 0 };
         arg2.replace(/([^YyMDdHhmsS]*?)(([YyMDdHhmsS])\3*)([^YyMDdHhmsS]*?)/g, function (m, $1, $2, $3, $4, idx, old) {
           var num = parseInt(str.substr(idx + $1.length, $2.length), 10);
           if ($3.toLowerCase() == 'm') {
@@ -341,14 +341,13 @@
           return '';
         });
         obj.M--;
-        var date = Utils.initDateWithArray([obj.Y, obj.M, obj.D, obj.H, obj.m, obj.S]);;
+        var date = Utils.initDateWithArray([obj.Y, obj.M, obj.D, obj.H, obj.m, obj.S]);
         return date;
       }
       var aspNetJsonRegex = /^(\d{4,})\-(\d{2})\-(\d{2})\s?\:?(\d{2})?\:?(\d{2})?\:?(\d{2})?$/i;
       var matched = aspNetJsonRegex.exec(str);
 
       if (matched !== null) {
-
         matched.shift();
         Utils.padMonth(matched);
         Utils.popUndefined(matched);
@@ -356,8 +355,6 @@
       }
       var date = new Date(str);
       if (date == "Invalid Date") {
-        // console.error("Invalid date parse from \"" + str + "\"");
-        // return null;
         throw new Error('Invalid date parse from ' +str);
       } else {
         return date;
