@@ -121,11 +121,10 @@
     if (isNaN(weekStart) || weekStart > 6) {
       weekStart = 0;
     }
-    var year = this.year();
     var firstDay = this.startOf(manba.YEAR);
-    var firstWeekDays = 7 - firstDay.day() + weekStart;
+    var firstWeekDays = (7 - firstDay.day() + weekStart) % 7;
     var dayOfYear = ((this.startOf(manba.DAY).time() - firstDay.time()) / (24 * 3600 * 1000)) + 1;
-    return Math.ceil((dayOfYear - firstWeekDays) / 7) + 1;
+    return Math.abs(Math.ceil((dayOfYear - firstWeekDays) / 7));
   }
 
   _Manba.prototype.getWeekOfMonth = function (weekStart) {
