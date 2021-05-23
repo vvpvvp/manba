@@ -1,4 +1,4 @@
-var manba = require('../manba');
+var manba = require('../build/manba');
 var expect = require('chai').expect;
 (function () {
   'use strict';
@@ -220,7 +220,7 @@ var expect = require('chai').expect;
       expect(manba("2016-12-25").getWeekOfMonth(manba.MONDAY)).to.equal(4);
     });
 
-    it('manba getWeekOfYear manba.SUNDAY', function () {
+    it('manba getWeekOfMonth manba.SUNDAY', function () {
       expect(manba("2016-12-25").getWeekOfMonth(manba.SUNDAY)).to.equal(5);
     });
 
@@ -229,12 +229,24 @@ var expect = require('chai').expect;
 
   describe('manba getWeekOfYear', function () {
 
-    it('manba getWeekOfYear manba.MONDAY', function () {
-      expect(manba("2016-12-25").getWeekOfYear(manba.MONDAY)).to.equal(52);
+    it('manba getWeekOfYear manba.MONDAY 2016-12-25', function () {
+      expect(manba("2016-12-25").getWeekOfYear(manba.MONDAY)).to.equal(51);
     });
 
-    it('manba getWeekOfYear manba.SUNDAY', function () {
-      expect(manba("2016-12-25").getWeekOfYear(manba.SUNDAY)).to.equal(53);
+    it('manba getWeekOfYear manba.SUNDAY 2016-12-25', function () {
+      expect(manba("2016-12-25").getWeekOfYear(manba.SUNDAY)).to.equal(52);
+    });
+
+    it('manba getWeekOfYear manba.SUNDAY 2018-01-01', function () {
+      expect(manba("2018-01-01").getWeekOfYear(manba.MONDAY)).to.equal(1);
+    });
+
+    it('manba getWeekOfYear manba.SUNDAY 2020-01-05', function () {
+      expect(manba("2020-01-05").getWeekOfYear(manba.MONDAY)).to.equal(0);
+    });
+
+    it('manba getWeekOfYear manba.SUNDAY 2020-01-06', function () {
+      expect(manba("2020-01-06").getWeekOfYear(manba.MONDAY)).to.equal(1);
     });
 
   });
