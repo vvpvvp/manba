@@ -6,10 +6,6 @@
 ![JS gzip size](http://img.badgesize.io/https://unpkg.com/manba/build/manba.js?compression=gzip&label=gzip%20size:%20JS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## website
-
-[http://manba.ch-un.com](http://manba.ch-un.com)
-
 ## install
 ```sh
 npm install manba
