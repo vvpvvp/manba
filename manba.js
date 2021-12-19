@@ -97,8 +97,8 @@
     var m = this;
     type = type || manba.DAY;
     _m = manba(_m);
-    v = _m.isValid();
-    if (v !== true) return v;
+    var vm = _m.isValid();
+    if (vm !== true) return vm;
     switch (type) {
     case manba.MINUTE:
       return Math.floor((m.time() - _m.time()) / 60 / 1000);
@@ -222,11 +222,11 @@
     return new _Manba(this);
   }
 
-  _Manba.prototype.endOf = function (type, set) {
+  _Manba.prototype.endOf = function (originType, set) {
     var v = this.isValid();
     if (v !== true) return v;
     var m = new _Manba(this);
-    type = type || manba.DAY;
+    var type = originType || manba.DAY;
     m = m.startOf(type, set);
     m.add(1, type);
     // if (manba.DAY == type||manba.WEEK == type) {
@@ -237,11 +237,11 @@
     return m;
   }
 
-  _Manba.prototype.startOf = function (type, set) {
+  _Manba.prototype.startOf = function (originType, set) {
     var v = this.isValid();
     if (v !== true) return v;
     var m = new _Manba(this);
-    type = type || manba.DAY;
+    var type = originType || manba.DAY;
     switch (type) {
     case manba.DAY:
       m.milliseconds(0);
