@@ -1,6 +1,6 @@
 (function(window,$) {
 	$(function(){
-		var doc_url = "https://raw.githubusercontent.com/vvpvvp/manba/master/README.md";
+		var doc_url = "/README.md";
 		$.get(doc_url, function(data) {
 			var _content = $(marked(data)),_right = $("#right");
             _right.append(_content);
